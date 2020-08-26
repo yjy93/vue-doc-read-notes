@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p v-if="isSeen"> you can see me!</p>
+</div>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            isSeen: true,
+        }
+    })
+</script>
+</body>
+</html>

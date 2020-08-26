@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="./js/Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{a}}</p>
+    <p>b--->>{{b}}</p>
+</div>
+<script type="text/javascript">
+    var data = {a: 1}
+    const vm = new Vue({
+        el: '#app',
+        data: data,
+    })
+
+    // 获得这个实例上的property
+    // 返回源数据中对应的字段, 我们可以看到 data中的数据被添加到 vm实例对象的property 中了
+    console.log(vm.a === data.a)
+
+    // 设置 vm 实例对象的 property 也会影响到原始数据
+    vm.a = 9
+
+    // 通过修改 data 也可以修改 vm 中对应的a
+    data.a = '修改data.a 后的数据'
+    console.log(vm.a);
+
+    // 注意问题: 只有当 实例被创建的时候, 就已经存在于 data 中的 property 才是响应式的
+    // 也就是说, 你后期通过 vm 实例对象添加的属性, 那就不是响应式的了
+    vm.b = '我是b啊 !'
+    // 此时对 b 的修改不会再触发视图的更新
+
+
+</script>
+</body>
+</html>

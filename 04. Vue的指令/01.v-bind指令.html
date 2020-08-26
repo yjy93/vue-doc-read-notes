@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的指令</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <a v-bind:href="url">点我搜索引擎</a>
+</div>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            // 可以通过这种方式动态更改 url的值
+            url: 'http://www.baidu.com',
+        }
+    })
+</script>
+</body>
+</html>
