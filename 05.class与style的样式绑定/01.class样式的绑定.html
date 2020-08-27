@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>probeGene</title>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .expand {
+            font-size: 30px;
+        }
+
+        .text {
+            border: 5px solid green;
+        }
+
+        .cls1 {
+            color: cyan;
+        }
+
+        .cls2 {
+            text-decoration-line: line-through;
+        }
+
+        .cls1 {
+            font-size: 50px;
+        }
+
+        .foo {
+            color: deeppink;
+            font-size: 30px;
+        }
+
+        .bar {
+            text-decoration-line: underline;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <!-- 对象的方式绑定类样式, 后面跟一个变量 -->
+    <!-- 对象的方式绑定类样式, 还可以在对象里添加多个类 -->
+    <!-- 对象的方式绑定类样式, 还可以跟普通的 class 类样式共存 -->
+    <div class="text" v-bind:class="{active:isActive,expand:isExpand}">样式</div>
+    <hr>
+
+    <!-- 数组的方式绑定类样式, 不过数组中每一个类的项目为字符串 -->
+    <div v-bind:class="[cls1,cls2,cls3]"> 数组的语法绑定class 类样式</div>
+    <hr>
+    <!-- 也可以根据条件切换类样式 -->
+    <div v-bind:class="[isActive? cls1 :'']">根据 isActive的 条件切换类样式</div>
+
+    <!-- 数组的方式绑定类样式, 也可以在数组中添加对象 -->
+    <div v-bind:class="[{active:isActive}]">数组的方式绑定类样式,也可以添加对象</div>
+
+    <hr>
+    <!-- 在组件上绑定类样式 -->
+    <my-component></my-component>
+    <hr>
+    <!-- 绑定内联样式 -->
+    <!-- 在Vue的style中写 css 属性,可以使用小驼峰的方式,也可以使用 - 中划线的方式-->
+    <!-- 但是如果使用 中划线的方式, 需要加引号, 否则会报错,如下演示 -->
+    <div v-bind:style="{color:activeColor,'font-size':fontSize}">绑定内联样式</div>
+    <div v-bind:style="{color:activeColor,'fontSize':fontSize}">绑定内联样式</div>
+    <div v-bind:style="styleObject"> 通常直接绑定到一个样式对象更方便</div>
+
+    <hr>
+    <!-- style的方式也可以采用数组语法,可以添加多个样式对象 -->
+    <div v-bind:style="[styleObject]">style数组语法的绑定</div>
+
+</div>
+<script type="text/javascript" src="../js/Vue.js"></script>
+<script type="text/javascript">
+
+  /**
+   *  在组件上绑定类样式
+   *    在组件上绑定类样式, 这些 class 将被添加到该组件的根元素上面
+   *
+   *  当 v-bind:style 使用需要添加浏览器前缀的时候, Vue.js会自动侦测添加相应浏览器的前缀
+   */
+  Vue.component('my-component', {
+    template: '<p class="foo bar">在组件上绑定类样式</p>'
+  })
+
+
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      isActive: true,
+      isExpand: true,
+      cls1: 'cls1',
+      cls2: 'cls2',
+      cls3: 'cls3',
+      activeColor: 'blue',
+      fontSize: '30px',
+      styleObject: {
+        color: 'red',
+        fontSize: '20px'
+      }
+    },
+  })
+
+</script>
+</body>
+</html>

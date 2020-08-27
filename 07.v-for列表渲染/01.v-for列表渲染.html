@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>probeGene</title>
+</head>
+<body>
+<div id="app">
+    <h3>在v-for块中, 我们可以访问父作用域的数据</h3>
+    <h3> v-for 不仅可以遍历数组,还可以遍历对象 </h3>
+    <ul id="example-1">
+        <li v-for="item in items" :key="item.message">
+            {{parentMessage}} --->{{ item.message }}
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="../js/Vue.js"></script>
+<script type="text/javascript">
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      parentMessage: '父作用域的数据',
+      items: [
+        {message: 'Foo'},
+        {message: 'Bar'}
+      ]
+    }
+  })
+</script>
+</body>
+</html>
