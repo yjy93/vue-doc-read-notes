@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/javascript">
+    /**
+     *  props 可以以字符串数组的方式接收, 但不方便指定类型
+     *  props 也可以以对象的方式接收, 这种方式可以方便我们指定类型
+     */
+    Vue.component('child-com', {
+        // 数组形式接收 prop
+        // props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
+
+        // 对象的形式接收prop 并指定类型
+        props: {
+            title: String,
+            likes: Number,
+            isPublished: Boolean,
+            commentIds: Array,
+            author: Object,
+            callback: Function,
+            contactsPromise: Promise // or any other constructor
+        }
+    })
+    new Vue({
+        el: '#app',
+    })
+
+</script>
+</body>
+</html>

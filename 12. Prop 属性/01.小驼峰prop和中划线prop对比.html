@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>Prop的大小写 驼峰命名 和 kekab-case </h2>
+
+    <!-- 在 HTML 中是 kebab-case 的形式调用属性的 -->
+    <blog-post post-title="hello!" :title="msg"></blog-post>
+</div>
+<script type="text/javascript">
+    /**
+     *  HTML 中的 attribute 名是大小写不敏感的，所以浏览器会把所有大写字符解释为小写字符。
+     *  这意味着当你使用 DOM 中的模板时，camelCase (驼峰命名法) 的 prop 名
+     *  需要使用其等价的 kebab-case (短横线分隔命名) 命名：
+     *
+     *  重申一次，如果你使用字符串模板，那么这个限制就不存在了
+     */
+    Vue.component('blog-post', {
+        // 在 JavaScript 中是 camelCase 的接收属性
+        props: ['postTitle'],
+        template: '<h3>{{ postTitle }}</h3>'
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            msg: 'HTML 中的 attribute 名是大小写不敏感的，所以浏览器会把所' +
+                '有大写字符解释为小写字符。这意味着当你使用 DOM 中的模板时，' +
+                'camelCase (驼峰命名法) 的 prop 名需要使用其等价的 kebab-case' +
+                ' (短横线分隔命名) 命名：'
+        }
+    })
+</script>
+
+</body>
+</html>
