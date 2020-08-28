@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2> -- 局部注册组件 -- </h2>
+    <component-a></component-a>
+    <component-b></component-b>
+    <component-c></component-c>
+</div>
+<script type="text/javascript">
+    const ComponentA = {template: `<div>我是局部注册的组件A</div>`}
+    const ComponentB = {template: `<div>我是局部注册的组件B</div>`}
+    const ComponentC = {template: `<div>我是局部注册的组件C</div>`}
+
+    const vm = new Vue({
+        el: '#app',
+        components: {
+            'component-a': ComponentA,
+            'component-b': ComponentB,
+            'component-c': ComponentC,
+        }
+    })
+</script>
+</body>
+</html>

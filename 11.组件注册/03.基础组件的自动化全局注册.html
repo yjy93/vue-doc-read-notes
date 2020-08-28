@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>全局注册的行为必须在根 Vue 实例 (通过 new Vue) 创建之前发生</h1>
+</div>
+<script type="text/javascript">
+    /**
+     *  这里的代码只是官网的实例代码, 暂不能用,只是用作记录
+     *  后面我们基于 webpack 或者脚手架创建项目的时候,会利用模块化
+     *  的方式, 自动化全局注册组件.
+     */
+    import Vue from 'vue'
+    import upperFirst from 'lodash/upperFirst'
+    import camelCase from 'lodash/camelCase'
+
+    const requireComponent = require.context(
+        // 其组件目录的相对路径
+        './components',
+        // 是否查询其子目录
+        false,
+        // 匹配基础组件文件名的正则表达式
+        /Base[A-Z]\w+\.(vue|js)$/
+    )
+
+    requireComponent.keys().forEach(fileName => {
+        // 获取组件配置
+        const componentConfig = requireComponent(fileName)
+
+        // 获取组件的 PascalCase 命名
+        const componentName = upperFirst(
+            camelCase(
+                // 获取和目录深度无关的文件名
+                fileName
+                    .split('/')
+                    .pop()
+                    .replace(/\.\w+$/, '')
+            )
+        )
+
+        // 全局注册组件
+        Vue.component(
+            componentName,
+            // 如果这个组件选项是通过 `export default` 导出的，
+            // 那么就会优先使用 `.default`，
+            // 否则回退到使用模块的根。
+            componentConfig.default || componentConfig
+        )
+    })
+</script>
+</body>
+</html>

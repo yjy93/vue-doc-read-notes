@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>全局注册组件</h1>
+    <my-component-a></my-component-a>
+    <my-component-a></my-component-a>
+    <my-component-a></my-component-a>
+</div>
+<script type="text/javascript">
+    /* 全局注册组件是通过 vue.component() 的方式注册的组件 */
+    Vue.component('my-component-a', {
+        template: `
+            <div>全局注册的组件a</div>
+        `
+    })
+    const vm = new Vue({
+        el: '#app',
+    })
+</script>
+
+</body>
+</html>
