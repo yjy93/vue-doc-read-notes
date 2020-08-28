@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<!--<div id="app">-->
+<!--    <text-document-->
+<!--            v-bind:title="doc.title"-->
+<!--            v-on:update:title="doc.title = $event"-->
+<!--    ></text-document>-->
+<!--</div>-->
+<!-- -------------------------------------------------  -->
+<hr>
+<div id="app2">
+    <!-- 这样就可以实现属性的双向绑定 -->
+    <text-document2
+            v-bind:title.sync="doc.title2"
+    ></text-document2>
+</div>
+<script type="text/javascript">
+    /* 在 Vue 中, props 的数据流是单向的, 但有些情况下我们可能需要对一个 prop
+     *   进行双向绑定,但是 vue 中不允许 直接修改 props 属性的值,这样容易引起问题
+     * 这也是为什么我们推荐 以一个 update:myPropName 的模式触发事件取而代之
+     * 举个例子，在一个包含 title prop 的组件中，我们可以用以下方法表达对其赋新值的意图：
+     *  this.$emit('update:title', newTitle)
+     * */
+
+    /*  Vue.component('text-document', {
+          props: ['title'],
+          template: `
+            <div>
+                 <h2>{{title}}</h2>
+                 <button @click="handleClick">子组件按钮</button>
+             </div>
+          `,
+          methods: {
+              handleClick() {
+                  this.$emit('update:title', '新title哦111111111')
+              }
+          }
+      })
+      const vm = new Vue({
+          el: '#app',
+          data: {
+              doc: {
+                  title: '我是title的内容哦!'
+              }
+          }
+      })*/
+
+    /* -------- 以上是我们通过 事件分发的方式实现props的双向绑定 ---- */
+    /* --------- 下面我们来通过 .sync 修饰符实现同样的效果 ------- */
+    Vue.component('text-document2', {
+        props: ['title'],
+        template: `
+          <div>
+               <h2>{{title}}</h2>
+               <button @click="handleClick">点我点我哦!!</button>
+           </div>
+        `,
+        methods: {
+            handleClick() {
+                /* 固定的 update:myProp  的方式来实现 prop 的双向数据绑定 */
+                /* 即: 在子组件里通过 $emit('update:title','新值') 方式更新值*/
+                /* 这样不必在父组件里在写监 @监听事件的方式那么麻烦  */
+                this.$emit('update:title', new Date().getTime())
+            }
+        }
+    })
+    const vm2 = new Vue({
+        el: '#app2',
+        data: {
+            doc: {
+                title2: '我是title的内容哦!'
+            }
+        }
+    })
+</script>
+</body>
+</html>
