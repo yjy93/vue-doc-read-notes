@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../vue.js"></script>
+    <title>.sync修饰符</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <h2>父组件中的title:</h2>
+        <input v-model="doc.title">
+    </div>
+    <!--  之下是子组件中的内容 -->
+    <text-document
+            v-bind:title.sync="doc.title"
+            v-on:update:title="doc.title=$event"
+    ></text-document>
+</div>
+<script type="text/javascript">
+    Vue.component('text-document', {
+        props: ['title'],
+        template: `
+        <div>
+         <h1>.sync修饰符使用</h1>
+        子组件中的title: <input v-model="title" onchange="$emit('update:title',$event)">
+        </div>
+    `,
+        mounted() {
+            console.log('子组件的属性', this.$props)
+        }
+    })
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            doc: {
+                title: ''
+            }
+        },
+        methods:{
+            'update:title'(e){
+                console.log('自定义事件触发了 -----');
+                this.doc.title = e.target.value
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>probeGene</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+
+<!-- 表单的 select 选中 及默认选中处理 -->
+<div id="example-5">
+    <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option value="A">Aaa</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+    <hr>
+    <!-- .lazy 修饰符的作用    -->
+    <div>
+        <h3>不加 .lazy修饰符</h3>
+        <input type="text" v-model="val1">
+        <p>{{ val1 }}</p>
+        <hr>
+        <h3>加 .lazy修饰符</h3>
+        <input type="text" v-model.lazy="val2">
+        <p>{{ val2 }}</p>
+    </div>
+    <p style="color:deeppink">我们可以看到, 不加 .lazy修饰符的时候, 在表单项input框输入内容的时候, 马上
+        就会触发值的改变.
+    </p>
+    <p style="color:deeppink;">而加了.lazy修饰符的时候, 在表单项input框输入完, 鼠标失去焦点的视时候
+        才会触发 val2 的值的改变
+    </p>
+</div>
+
+<script type="text/javascript">
+    new Vue({
+        el: '#example-5',
+        data: {
+            // 给 selected 一个值, 表示默认选中哪一项
+            selected: 'A',
+            val1: '',
+            val2: ''
+        }
+    })
+</script>
+</body>
+</html>

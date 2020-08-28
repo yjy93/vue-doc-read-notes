@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/Vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>父组件</h2>
+    <p>{{msg}}</p>
+    <child-com @handle-listener="handle"></child-com>
+</div>
+<script type="text/javascript">
+    /**
+     *   在   父组件中监听子组件的事件
+     */
+
+    Vue.component('child-com', {
+        template: `
+            <button @click="handleclick">子组件按钮添加了一个事件</button>
+        `,
+        methods: {
+            'handleclick'() {
+                console.log(123);
+                this.$emit('handle-listener', 'emit出来的数据')
+            }
+        }
+    })
+    const vm = new Vue({
+        el: '#app',
+        name: 'parent',
+        data: {
+            msg: '父组件数据'
+        },
+        methods: {
+            "handle"(data) {
+                alert('父组件监听到子组件派发的事件啦-->>' + data)
+            }
+        }
+    })
+</script>
+</body>
+</html>
