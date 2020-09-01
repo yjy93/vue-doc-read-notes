@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>默认插槽</h1>
+        <h1 style="color: green;">默认插槽</h1>
         <h2>当前App组件数据: -> {{user.name}}</h2>
         <default-slot1>
             默认插槽
