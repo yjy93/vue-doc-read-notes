@@ -1,15 +1,17 @@
 <template>
     <div id="app">
-        我是 01 文件夹下的问价
+        <DefaultSlot0></DefaultSlot0>
     </div>
 </template>
 
 <script>
-
-  export default {
-    name: 'App',
-    components: {}
-  }
+    import DefaultSlot0 from './DefaultSlot0'
+    export default {
+        name: 'App',
+        components: {
+            DefaultSlot0
+        }
+    }
 </script>
 
 <style>
