@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if 和 v-for 的优先级问题</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     *  v-if 和 v-for 的优先级: =>
+     *
+     *  在 同一个标签上使用 v-if 和 v-for 指令的时候,
+     *  v-for 指令要先于 v-if 指令执行.
+     *  而我们通过 vue-template-compiler 模块编译后的代码也可以看到, 会先产生列表,然后根据 v-if 的值确定
+     *  标签宣不渲染. 所以 v-for 指令的优先级要高于 v-if 指令的优先级
+     * 但是:  通常我们在写代码的时候,尽量不要在 同一个标签上写 v-if 和 v-for这两个指令, 可以在外层嵌套一个  template 模板标签的方式实现
+     * 自己想要的逻辑判断. 否则这样会容易报警告
+     */
+
+    // let compiler = import('vue-template-compiler')
+    // const ast = compiler.compile(`<div v-if="false" v-for="i in 3">3</div>`)
+    // console.log(ast.render);
+</script>
+</body>
+</html>
