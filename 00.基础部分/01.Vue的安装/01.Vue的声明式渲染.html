@@ -10,7 +10,10 @@
     <h2>{{msg}}</h2>
 </div>
 <script>
-    
+    /**
+     * Vue 的安装使用. 我们可以直接引入 Vue.js 这个文件包, Vue会自动在全局
+     * Window 下添加一个 Vue变量,该变量为一个 构造函数(类), 我们可以直接使用.
+     */
      const app = new Vue({
         el: '#app',
         data: {msg:'Hello Vue!'}
