@@ -39,7 +39,7 @@
     console.log('vm.$children[0].$options.name ---->>>>', vm.$children[0].$options.name); // CustomInput
     // 通过比较 vm.searchText === vm.$children[0].value  等于 true
     // 我们知道, 我们自定义的组件 v-model中的属性就绑定给了子组件内部的 value 属性
-    // 也就是说 v-model绑定的属性, 在组件内部props中使用 value 接收的
+    // 也就是说 v-model绑定的属性, 在组件内部 props 中使用 value 接收的
     console.log(vm.searchText === vm.$children[0].value)
 </script>
 </body>
