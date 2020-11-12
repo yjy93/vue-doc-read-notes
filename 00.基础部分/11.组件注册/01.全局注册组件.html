@@ -8,12 +8,30 @@
 <body>
 <div id="app">
     <h1>全局注册组件</h1>
+    <h2>PascalCase 注册的组件</h2>
+    <my-component></my-component>
+    <!-- 这种格式基于 vue-cli中解析Vue模板的包 才能正确分析. -->
+<!--    <MyComponent></MyComponent>-->
+    <hr>
+    <h2>kebab-case 注册的组件</h2>
     <my-component-a></my-component-a>
     <my-component-a></my-component-a>
     <my-component-a></my-component-a>
 </div>
 <script type="text/javascript">
     /* 全局注册组件是通过 vue.component() 的方式注册的组件 */
+    /**
+     *  Vue 中注册组件的两种命名方式
+     *  1.) kebab-case 格式. 即: 字母全小写,且中间用中横线 '-' 分割.
+     *       这种方式注册的组件,使用的时候也必须是 全小写,且中横线分割的方式使用
+     *
+     *  2.) PascalCase 格式. 及: 大驼峰命名法. 当使用大驼峰命名法定义一个组件时,
+     *      使用的时候, 既可以使用 大驼峰的格式, 也可以使用 小写字母加中划线的方式使用
+     *      如: <my-component-name> 或 <MyComponentName> 都是可以的
+     */
+    Vue.component('MyComponent', {
+        template: `<div>我是 PascalCase 形式注册的组件</div>`
+    })
     Vue.component('my-component-a', {
         template: `
             <div>全局注册的组件a</div>
