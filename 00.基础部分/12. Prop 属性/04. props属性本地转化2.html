@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue中Prop 的转化</title>
+</head>
+<body>
+<script type="text/javascript" src="../js/Vue.js"></script>
+
+<h4 style="color: deeppink">在Vue中, prop的值是单向数据流的, 即: 所有的 prop 都使得父子prop之间形成了一个单向</h4>
+<h4 style="color: deeppink">向下绑定, 父级prop更新会向下流动到子组件中,但是反过来不行.</h4>
+<h3 style="color: deeppink">这里有两种常见的 试图变更一个 prop 的情形：</h3>
+<hr>
+<h3 style="color: #ff0000">情况2: 定义一个计算属性 <strong>将其作为一个本地的 prop 数据来使用</strong>。</h3>
+<div id="app">
+    父组件: {{initialCounter}}
+    <!-- 注意: 这里使用 myCounter 大驼峰的方式传递属性, 出现了属性传递不过去的情况. 所以要用中划线.
+    在脚手架创建的项目里没这个问题. 是因为有包做了解析 -->
+    <!--    <child :myCounter="initialCounter"></child>-->
+    <child :size="size"></child>
+</div>
+
+<script type="text/javascript">
+    Vue.component('child', {
+        props: ['size'],
+        template: `<div>
+                <h3>我是Child1 子组件计算属性后的值: {{computedSize}}</h3>
+                <p>{{computedSize}}</p>
+                    </div>`
+        ,
+        computed: {
+            computedSize() {
+                return this.size.toUpperCase()
+            },
+        },
+    });
+
+    /** 父组件 ** */
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            size: 'middle',
+        }
+    })
+</script>
+</body>
+</html>
