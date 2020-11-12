@@ -6,8 +6,30 @@
     <script type="text/javascript" src="../js/Vue.js"></script>
 </head>
 <body>
+<div id="app">
+    <h1>父组件</h1>
+    <p style="color: red">我们可以看到 $attrs 这个属性会自动把传递给子组件所有属性,全部放入到一个对象里</p>
+    <p style="color: red">这个对象就是 $attrs, 里面包含了传入的所有属性. 这种方式使得我们在给子组件或孙子组件传递值的时候</p>
+    <p style="color: red">假如我们不想在子组件用 props 接收所有属性(子组件不需要), 可以直接把 $attrs 传递给 孙子组件</p>
+    <my-comopnent :name="name" :age="age"></my-comopnent>
+</div>
 <script type="text/javascript">
     /* $attrs 的作用后续补充 */
+    Vue.component('my-comopnent', {
+        props: ['name', 'age'],
+        inheritAttrs: false,
+        template: `<div><h2>子组件:{{$attrs}}</h2></div>`,
+        mounted() {
+            console.log("$attrs 是: ->", this.$attrs);
+        }
+    })
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            name: 'Gene',
+            age: 18,
+        }
+    })
 </script>
 
 </body>
