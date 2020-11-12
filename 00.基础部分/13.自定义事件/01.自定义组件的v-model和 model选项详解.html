@@ -7,8 +7,16 @@
 </head>
 <body>
 <div id="app">
+    <h2 style="color: deeppink">不同于 <strong>组件</strong> 和 <strong>prop</strong>
+        事件名不存在任何自动化的 大小写转换.
+    </h2>
+    <h2 style="color: deeppink"> 而是触发的事件名需要完全匹配监听这个事件所用的名称.</h2>
+
     <p>父组件:{{lovingVue}}</p>
     <base-checkbox v-model="lovingVue"></base-checkbox>
+
+    <h3 style="color: red">官网描述: v-on 事件监听器在 DOM 模板中会被自动转换为全小写</h3>
+    <h2 style="color: red">因此，我们推荐你始终使用 kebab-case 的事件名。</h2>
 </div>
 
 <script type="text/javascript">
@@ -18,7 +26,7 @@
             event: 'change11'
         },
         // 没有 model选项的时候, v-model绑定的值应该用 value接收, 而 model选项把 v-model绑定的值给了 model选项的 prop
-        // 这里 model 选项的 props 就接收我们 v-model 绑定的值 lovingVue
+        // 这里 model 选项的 prop 就接收我们 v-model 绑定的值 lovingVue
         props: {
             isChecked: Boolean
         },
