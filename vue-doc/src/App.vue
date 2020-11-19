@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <h4 style="color: deeppink"> Hello Vue!</h4>
-
+    <h4 style="color: #b61d70"> Hello Vue!</h4>
   </div>
 </template>
 
