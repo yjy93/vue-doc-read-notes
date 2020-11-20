@@ -4,6 +4,7 @@ import myPlugin from './directives/index'
 import myDirective from './directives/functionPlugin'
 
 Vue.config.productionTip = false
+
 // 对象形式实现的插件  => 目的为了自定义指令
 Vue.use(myPlugin, {
     name: 'myObjectPlugin',
