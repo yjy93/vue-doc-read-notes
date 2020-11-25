@@ -9,8 +9,8 @@ module.exports = {
         // entry: './01.src-插槽/main.js', // 修改入口 ./01.src-插槽/main.js,
         // entry: './02.src-动态组件,异步组件/main.js',
         // entry: './03.src-混入/main.js',
-        entry: './04. src-vue中插件/main.js',
-        // entry: './05. 自定义指令/main.js',
+        // entry: './04. src-vue中插件/main.js',
+        entry: './05. 自定义指令/main.js',
     },
     lintOnSave: false, // 忽略 eslint 未使用变量报错问题
     devServer: {
